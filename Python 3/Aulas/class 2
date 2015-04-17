@@ -1,0 +1,157 @@
+#!/usr/bin/python3
+
+#video 1
+print("Hello, World!")
+
+#video 2
+a, b = 0, 1
+if a < b:
+    print('a ({}) is less than b ({})'.format(a,b))
+else:
+    print('a({}) is not less than b ({})'.format(a,b))
+
+print('foo' if a < b else 'bar')
+
+#video 3
+
+#whileloop
+#fibonacci series
+a, b = 0, 1
+while b < 50:
+    print(b)
+    a, b = b, a + b
+
+print('Done.')
+
+#forloop
+#read the lines from the file
+
+fh = open('/home/canivel/Desktop/lines.txt')
+for line in fh.readlines():
+    print(line, end = '')
+
+
+#video 4
+#function
+
+def isprime(n):
+    if n == 1:
+        print('1 is especial')
+        return False
+    for x in range (2, n):
+        if n % x == 0:
+            print ('{} equals {} x {}'.format(n, x, n // x))
+            return False
+    else:
+        print(n,"is a prime number")
+        return True
+
+for n in range (1, 50):
+    isprime(n)
+
+
+#video 5
+#generator function
+print('\n\n\nvideo5\n')
+
+def isprime(n):
+    if n == 1:
+        return False
+    for x in range (2, n):
+        if n % x == 0:
+            return False
+    else:
+        return True
+
+def primes( n = 1):
+    while(True):
+        if isprime(n):yield n
+        n+=1
+
+for n in primes():
+    if n > 10: break
+    print(n)
+
+
+#video 6
+#simpleoop
+
+class Fibonacci():
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def series(self):
+        while(True):
+            yield(self.b)
+            self.a, self.b = self.b, self.a + self.b
+
+f = Fibonacci(0, 1)
+for r in f.series():
+    if r > 2: break
+    print(r, end = ' ')
+
+#video 7
+#oop2
+print('\n\n')
+
+class AnimalActions:
+    def quack(self): return self.strings['quack']
+    def feathers(self): return self.strings['feathers']
+    def bark(self): return self.strings['bark']
+    def fur(self): return self.strings['fur']
+
+class Duck(AnimalActions):
+    strings = dict(
+        quack = "Quaaaack!",
+        feathers = "The duck has grey and white feathers",
+        bark =  'The duck cannot bark',
+        fur = 'The duck has no fur',
+    )
+
+class Person(AnimalActions):
+    strings = dict(
+        quack = "The person intimidates the duck!",
+        feathers = "Dude has no feathers",
+        bark =  'Human says wooooof',
+        fur = 'check out the human fur',
+    )
+class Dog(AnimalActions):
+    strings = dict(
+        quack = "AUAU",
+        feathers = "Dog has no feathers",
+        bark =  'This dog looks like an werewolf',
+        fur = 'Not a single fur at the dog',
+    )
+def in_dog_house(dog):
+    print(dog.bark())
+    print(dog.fur())
+def in_the_forest(duck):
+    print(duck.quack())
+    print(duck.feathers())
+def main():
+    donald = Duck()
+    john = Person()
+    fido = Dog()
+
+    print('- In the forest: ')
+    for o in (donald, john, fido):
+        in_the_forest(o)
+    print('- In the doghouse: ')
+    for o in (donald, john, fido):
+        in_dog_house(o)
+
+if __name__ == '__main__': main()
+
+
+#video 7
+#exception
+
+try:
+    fh = open('xlines.txt')
+    for line in fh.readlines():
+        print(line)
+except IOError as e:
+    print('Shit! ({})'.format(e))
+
+print('After shit!')
